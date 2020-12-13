@@ -220,6 +220,40 @@ public final class FileManager {
 		Collections.sort(highScores);
 		return highScores;
 	}
+	
+	public void resetHighScores(int difficulty) throws IOException {
+		OutputStream outputStream = null;
+		BufferedWriter bufferedWriter = null;
+
+		try {
+			String jarPath = FileManager.class.getProtectionDomain()
+					.getCodeSource().getLocation().getPath();
+			jarPath = URLDecoder.decode(jarPath, "UTF-8");
+
+			String scoresPath = new File(jarPath).getParent();
+			scoresPath += File.separator;
+			scoresPath += "scores";
+			scoresPath += this.difficulty[difficulty-Core.EASY];
+			logger.info(scoresPath);
+
+			File scoresFile = new File(scoresPath);
+
+			if (!scoresFile.exists())
+				scoresFile.createNewFile();
+
+			outputStream = new FileOutputStream(scoresFile);
+			bufferedWriter = new BufferedWriter(new OutputStreamWriter(
+					outputStream, Charset.forName("UTF-8")));
+
+			logger.info("Resetting user high scores.");
+
+			bufferedWriter.write("");
+
+		} finally {
+			if (bufferedWriter != null)
+				bufferedWriter.close();
+		}
+	}
 
 	/**
 	 * Saves user high scores to disk.
