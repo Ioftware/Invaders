@@ -33,14 +33,10 @@ public class GameState {
 	 * 
 	 * @param level
 	 *            Current game level.
-	 * @param score
-	 *            Current score.
-	 * @param livesRemaining
-	 *            Lives currently remaining.
-	 * @param bulletsShot
-	 *            Bullets shot until now.
-	 * @param shipsDestroyed
-	 *            Ships destroyed until now.
+	 * @param score_p1
+	 * 			  Current score_player1
+	 * @param score_p2
+	 *            Current score_player2
 	 */
 	public GameState(final int level, final int score_p1,
 			final int livesRemaining_p1, final int bulletsShot_p1,
