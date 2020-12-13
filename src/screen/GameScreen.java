@@ -339,13 +339,10 @@ public class GameScreen extends Screen {
 		if (this.isPaused) {
 			drawManager.initDrawing(this);
 
-			drawManager.drawHighScoreMenu(this);
+			drawManager.drawPause(this);
+			drawManager.drawPauseMenu(this, this.menuNum);
 
 			drawManager.completeDrawing(this);
-
-			// Replace above with this code.
-//			drawManager.drawPause(this);
-//			drawManager.drawPauseMenu(this, this.menuNum);
 
 			return;
 		}
