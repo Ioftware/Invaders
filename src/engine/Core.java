@@ -214,6 +214,7 @@ public final class Core {
 						+ " pre-game screen at " + FPS + " fps.");
 				returnCode = frame.setScreen(currentScreen);
 				LOGGER.info("Closing pre-game screen.");
+				break;
 			default:
 				break;
 			}
