@@ -93,17 +93,9 @@ public class PreGameScreen extends Screen {
 	private void draw() {
 		drawManager.initDrawing(this);
 
-		drawManager.drawTitle(this);
-
-		drawManager.completeDrawing(this);
-		
-		/* Replace above with this code.
-		drawManager.initDrawing(this);
-
 		drawManager.drawPreGame(this, this.difficulty);
 		drawManager.drawPreGameMenu(this, this.returnCode);
 		
 		drawManager.completeDrawing(this);
-		*/
 	}
 }
