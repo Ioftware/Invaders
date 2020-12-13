@@ -306,6 +306,9 @@ public class GameScreen extends Screen {
 						isPaused = false;
 						this.isRunning = false;
 						this.selectionCooldown.reset();
+					} else {
+						isPaused = false;
+						this.selectionCooldown.reset();
 					}
 				}
 //				for (int i = '1'; i <= '7'; i++) {
