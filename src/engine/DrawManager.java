@@ -550,6 +550,7 @@ public final class DrawManager {
 			drawCenteredRegularString(screen, scoreString, screen.getHeight()
 					/ 4 + fontRegularMetrics.getHeight() * (i + 1) * 2);
 			i++;
+			if(i==5) break;
 		}
 	}
 
