@@ -47,6 +47,8 @@ public class ScoreScreen extends Screen {
 	private Cooldown selectionCooldown;
 	
 	private boolean is_player1;
+	
+	private int difficulty;
 
 	/**
 	 * Constructor, establishes the properties of the screen.
@@ -61,10 +63,11 @@ public class ScoreScreen extends Screen {
 	 *            Current game state.
 	 */
 	public ScoreScreen(final int width, final int height, final int fps,
-			final GameState gameState, boolean is_player1) {
+			final GameState gameState, boolean is_player1, final int difficulty) {
 		super(width, height, fps);
 
 		this.is_player1 = is_player1;
+		this.difficulty = difficulty;
 		
 		if (is_player1) {
 			this.score = gameState.getScoreP1();
@@ -90,7 +93,7 @@ public class ScoreScreen extends Screen {
 		}
 		
 		try {
-			this.highScores = Core.getFileManager().loadHighScores();
+			this.highScores = Core.getFileManager().loadHighScores(difficulty);
 			if (highScores.size() < MAX_HIGH_SCORE_NUM
 					|| highScores.get(highScores.size() - 1).getScore()
 					< this.score)
@@ -181,7 +184,7 @@ public class ScoreScreen extends Screen {
 			highScores.remove(highScores.size() - 1);
 
 		try {
-			Core.getFileManager().saveHighScores(highScores);
+			Core.getFileManager().saveHighScores(highScores, difficulty);
 		} catch (IOException e) {
 			logger.warning("Couldn't load high scores!");
 		}

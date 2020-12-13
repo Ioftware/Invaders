@@ -38,6 +38,7 @@ public final class FileManager {
 	/** Max number of high scores. */
 	private static final int MAX_SCORES = 7;
 
+	private String difficulty[] = {"easy", "normal", "hard"};
 	/**
 	 * private constructor.
 	 */
@@ -172,7 +173,7 @@ public final class FileManager {
 	 * @throws IOException
 	 *             In case of loading problems.
 	 */
-	public List<Score> loadHighScores() throws IOException {
+	public List<Score> loadHighScores(int difficulty) throws IOException {
 
 		List<Score> highScores = new ArrayList<Score>();
 		InputStream inputStream = null;
@@ -186,6 +187,8 @@ public final class FileManager {
 			String scoresPath = new File(jarPath).getParent();
 			scoresPath += File.separator;
 			scoresPath += "scores";
+			scoresPath += this.difficulty[difficulty-Core.EASY];
+			logger.info(scoresPath);
 
 			File scoresFile = new File(scoresPath);
 			inputStream = new FileInputStream(scoresFile);
@@ -226,7 +229,7 @@ public final class FileManager {
 	 * @throws IOException
 	 *             In case of loading problems.
 	 */
-	public void saveHighScores(final List<Score> highScores) 
+	public void saveHighScores(final List<Score> highScores, int difficulty) 
 			throws IOException {
 		OutputStream outputStream = null;
 		BufferedWriter bufferedWriter = null;
@@ -239,6 +242,8 @@ public final class FileManager {
 			String scoresPath = new File(jarPath).getParent();
 			scoresPath += File.separator;
 			scoresPath += "scores";
+			scoresPath += this.difficulty[difficulty-Core.EASY];
+			logger.info(scoresPath);
 
 			File scoresFile = new File(scoresPath);
 
