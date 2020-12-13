@@ -29,7 +29,7 @@ public class Screen {
 
 	/** Screen width. */
 	protected int width;
-	/** Screen height. */
+	/** Screen height. */ 	
 	protected int height;
 	/** Frames per second shown on the screen. */
 	protected int fps;
@@ -98,11 +98,29 @@ public class Screen {
 
 		return 0;
 	}
+	
+	public int run_test() {
+		this.isRunning = true;
+
+		update();
+		try {
+			TimeUnit.MILLISECONDS.sleep(200);
+		} catch (InterruptedException e) {
+			return 0;
+		}
+
+		return 0;
+	}
+	
 
 	/**
 	 * Updates the elements on screen and checks for events.
 	 */
 	protected void update() {
+	}
+	
+	public void update_test() {
+		update();
 	}
 
 	/**

@@ -2,38 +2,60 @@ package screen.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ScreenTest {
+import screen.Screen;
 
-	@Test
+class ScreenTest {
+	
+	Screen screen;
+	
+	@BeforeEach @Test
 	void testScreen() {
-		fail("Not yet implemented");
+		try {
+			screen = new Screen(1, 2, 60);
+		} catch (Exception e) {
+			fail();
+		}
 	}
 
 	@Test
 	void testInitialize() {
-		fail("Not yet implemented");
+		try {
+			screen.initialize();
+		} catch (Exception e) {
+			fail();
+		}
 	}
 
 	@Test
 	void testRun() {
-		fail("Not yet implemented");
+		try {
+			screen.run_test();
+		} catch (Exception e) {
+			fail();
+		}
 	}
 
 	@Test
 	void testUpdate() {
-		fail("Not yet implemented");
+		try {
+			screen.update_test();
+		} catch (Exception e) {
+			fail();
+		}
 	}
 
 	@Test
 	void testGetWidth() {
-		fail("Not yet implemented");
+		assertEquals(screen.getWidth(), 1);
 	}
 
 	@Test
 	void testGetHeight() {
-		fail("Not yet implemented");
+		assertEquals(screen.getHeight(), 2);
 	}
 
 }
