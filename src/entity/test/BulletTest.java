@@ -2,33 +2,56 @@ package entity.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import entity.Bullet;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BulletTest {
 
+	Bullet bullet;
+
+	@BeforeEach
+	void setup() {
+		bullet = new Bullet(0, 0, 20);
+	}
+
 	@Test
 	void testBullet() {
-		fail("Not yet implemented");
+		try {
+			new Bullet(0, 0, 20);
+		}
+		catch (Exception e) {
+			fail();
+		}
 	}
 
 	@Test
 	void testSetSprite() {
-		fail("Not yet implemented");
+		try {
+			bullet.setSprite();
+		}
+		catch (Exception e) {
+			fail();
+		}
 	}
 
 	@Test
 	void testUpdate() {
-		fail("Not yet implemented");
+		bullet.update();
+		assertTrue(bullet.getPositionY() > 0);
 	}
 
 	@Test
 	void testSetSpeed() {
-		fail("Not yet implemented");
+		bullet.setSpeed(10);
+		bullet.update();
+		assertTrue(bullet.getPositionY() == 10);
 	}
 
 	@Test
 	void testGetSpeed() {
-		fail("Not yet implemented");
+		bullet.update();
+		assertTrue(bullet.getPositionY() == bullet.getSpeed());
 	}
 
 }
