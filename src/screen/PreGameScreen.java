@@ -63,6 +63,7 @@ public class PreGameScreen extends Screen {
 					|| inputManager.isKeyDown(KeyEvent.VK_W)
 					|| inputManager.isKeyDown(KeyEvent.VK_DOWN)
 					|| inputManager.isKeyDown(KeyEvent.VK_S)) {
+				logger.info("Selected return code : " + returnCode);
 				nextMenuItem();
 				this.selectionCooldown.reset();
 			}
@@ -73,7 +74,6 @@ public class PreGameScreen extends Screen {
 				this.isRunning = false;
 			}
 		}
-		System.out.println(this.returnCode);
 	}
 
 	/**
