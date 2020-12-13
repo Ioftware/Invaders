@@ -2,53 +2,72 @@ package entity.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import entity.Entity;
+import org.junit.Ignore;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.awt.*;
 
 class EntityTest {
 
+	Entity entity;
+
+	@BeforeEach
+	void setup() {
+		entity = new Entity(0, 0, 1, 1, Color.BLACK);
+	}
+
 	@Test
 	void testEntity() {
-		fail("Not yet implemented");
+		try {
+			new Entity(0, 0, 1, 1, Color.BLACK);
+		}
+		catch (Exception e) {
+			fail();
+		}
 	}
 
 	@Test
 	void testGetColor() {
-		fail("Not yet implemented");
+		assertTrue(entity.getColor() == Color.BLACK);
 	}
 
 	@Test
 	void testGetPositionX() {
-		fail("Not yet implemented");
+		assertTrue(entity.getPositionX() == 0);
 	}
 
 	@Test
 	void testGetPositionY() {
-		fail("Not yet implemented");
+		assertTrue(entity.getPositionY() == 0);
 	}
 
 	@Test
 	void testSetPositionX() {
-		fail("Not yet implemented");
+		entity.setPositionX(1);
+		assertTrue(entity.getPositionX() == 1);
 	}
 
 	@Test
 	void testSetPositionY() {
-		fail("Not yet implemented");
+		entity.setPositionY(1);
+		assertTrue(entity.getPositionY() == 1);
 	}
 
-	@Test
+	@Ignore
 	void testGetSpriteType() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
 	void testGetWidth() {
-		fail("Not yet implemented");
+		assertTrue(entity.getWidth() == 1);
 	}
 
 	@Test
 	void testGetHeight() {
-		fail("Not yet implemented");
+		assertTrue(entity.getHeight() == 1);
 	}
 
 }
