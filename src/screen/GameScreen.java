@@ -122,10 +122,12 @@ public class GameScreen extends Screen {
 		int s = gameSettings.getBaseSpeed();
 		int f = gameSettings.getShootingFrecuency();
 		
-		w += (gameState.getDifficulty()-Core.EASY)-2;
-		h += (gameState.getDifficulty()-Core.EASY)/2-2;
-		s = s*10*Core.HARD/9*gameState.getDifficulty();
-		f = f*10*Core.HARD/9*gameState.getDifficulty();
+		w += (gameState.getDifficulty()-Core.NORMAL)-1;
+		h += (gameState.getDifficulty()-Core.NORMAL)/2-1;
+		s *= Core.NORMAL*Core.NORMAL*Core.NORMAL;
+		s /= gameState.getDifficulty()*gameState.getDifficulty()*gameState.getDifficulty();
+		f *= Core.NORMAL*Core.NORMAL*Core.NORMAL;
+		f /= gameState.getDifficulty()*gameState.getDifficulty()*gameState.getDifficulty();
 		
 		this.gameSettings = new GameSettings(w, h, s, f);
 		
