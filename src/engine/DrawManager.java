@@ -521,6 +521,9 @@ public final class DrawManager {
 	public void drawHighScoreMenu(final Screen screen) {
 		String highScoreString = "High Scores";
 		String instructionsString = "Press Space to return";
+		String resetString = "Score Reset";
+		String instructions2String = "Press ESC to reset scores";
+
 
 		backBufferGraphics.setColor(Color.GREEN);
 		drawCenteredBigString(screen, highScoreString, screen.getHeight() / 8);
@@ -528,6 +531,14 @@ public final class DrawManager {
 		backBufferGraphics.setColor(Color.GRAY);
 		drawCenteredRegularString(screen, instructionsString,
 				screen.getHeight() / 5);
+
+		backBufferGraphics.setColor(Color.YELLOW);
+		drawCenteredRegularString(screen, resetString, screen.getHeight() / 2 + 120);
+
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, instructions2String,
+				screen.getHeight() / 2 + 150);
+
 	}
 
 	/**
