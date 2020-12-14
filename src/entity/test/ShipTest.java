@@ -2,48 +2,95 @@ package entity.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import entity.Bullet;
+import entity.Ship;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashSet;
+import java.util.Set;
 
 class ShipTest {
 
+	Ship ship;
+
+	@BeforeEach
+	void setup() {
+		ship = new Ship(0, 0, true);
+	}
+
 	@Test
 	void testShip() {
-		fail("Not yet implemented");
+		try {
+			new Ship(0, 0, true);
+		}
+		catch (Exception e) {
+			fail();
+		}
 	}
 
 	@Test
 	void testMoveRight() {
-		fail("Not yet implemented");
+		ship.moveRight();
+		assertTrue(ship.getPositionX() > 0);
 	}
 
 	@Test
 	void testMoveLeft() {
-		fail("Not yet implemented");
+		ship.moveLeft();
+		assertTrue(ship.getPositionX() < 0);
 	}
 
 	@Test
 	void testShoot() {
-		fail("Not yet implemented");
+		Set<Bullet> bulletSet = new HashSet<Bullet>();
+		assertTrue(ship.shoot(bulletSet));
+	}
+
+	@Test
+	void testDoubleShoot() {
+		Set<Bullet> bulletSet = new HashSet<Bullet>();
+		assertTrue(ship.shoot(bulletSet));
+		assertTrue(!ship.shoot(bulletSet));
 	}
 
 	@Test
 	void testUpdate() {
-		fail("Not yet implemented");
+		try {
+			ship.update();
+		}
+		catch (Exception e) {
+			fail();
+		}
 	}
 
 	@Test
 	void testDestroy() {
-		fail("Not yet implemented");
+		try {
+			ship.destroy();
+		}
+		catch (Exception e) {
+			fail();
+		}
 	}
 
 	@Test
-	void testIsDestroyed() {
-		fail("Not yet implemented");
+	void testIsDestroyedAtFirst() {
+		assertTrue(!ship.isDestroyed());
+	}
+
+	@Test
+	void testIsDestroyedAfterDestroy() {
+		ship.destroy();
+		assertTrue(ship.isDestroyed());
 	}
 
 	@Test
 	void testGetSpeed() {
-		fail("Not yet implemented");
+		ship.moveRight();
+		assertTrue(ship.getPositionX() == ship.getSpeed());
+		ship.moveLeft();
+		assertTrue(ship.getPositionX() == 0);
 	}
 
 }
