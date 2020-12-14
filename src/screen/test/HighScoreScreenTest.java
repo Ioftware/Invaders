@@ -1,24 +1,32 @@
 package screen.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.Ignore;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class HighScoreScreenTest {
+import screen.HighScoreScreen;
 
-	@Test
+class HighScoreScreenTest {
+	HighScoreScreen screen;
+	@Ignore
 	void testRun() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+	@Ignore
 	void testUpdate() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+	@Test @BeforeEach
 	void testHighScoreScreen() {
-		fail("Not yet implemented");
+		try {
+			screen = new HighScoreScreen(8, 9, 60);
+		} catch (Exception e) {
+			fail();
+		}
 	}
 
 }

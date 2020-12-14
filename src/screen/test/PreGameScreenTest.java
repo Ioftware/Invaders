@@ -1,24 +1,33 @@
 package screen.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.Ignore;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class PreGameScreenTest {
+import engine.Core;
+import screen.PreGameScreen;
 
-	@Test
+class PreGameScreenTest {
+	PreGameScreen screen;
+	@Ignore
 	void testRun() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+	@Ignore
 	void testUpdate() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+	@Test @BeforeEach
 	void testPreGameScreen() {
-		fail("Not yet implemented");
+		try {
+			screen = new PreGameScreen(7, 8, 60, Core.NORMAL);
+		} catch (Exception e) {
+			fail();
+		}
 	}
 
 }
