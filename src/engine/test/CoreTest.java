@@ -2,43 +2,47 @@ package engine.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import engine.*;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
+
+import java.util.logging.Logger;
 
 class CoreTest {
 
-	@Test
+	@Ignore
 	void testMain() {
 		fail("Not yet implemented");
 	}
 
 	@Test
 	void testGetLogger() {
-		fail("Not yet implemented");
+		assertTrue(Core.getLogger() instanceof Logger);
 	}
 
 	@Test
 	void testGetDrawManager() {
-		fail("Not yet implemented");
+		assertTrue(Core.getDrawManager() instanceof DrawManager);
 	}
 
 	@Test
 	void testGetInputManager() {
-		fail("Not yet implemented");
+		assertTrue(Core.getInputManager() instanceof InputManager);
 	}
 
 	@Test
 	void testGetFileManager() {
-		fail("Not yet implemented");
+		assertTrue(Core.getFileManager() instanceof FileManager);
 	}
 
 	@Test
 	void testGetCooldown() {
-		fail("Not yet implemented");
+		assertTrue(Core.getCooldown(1) instanceof Cooldown);
 	}
 
 	@Test
 	void testGetVariableCooldown() {
-		fail("Not yet implemented");
+		assertTrue(Core.getVariableCooldown(1, 1) instanceof Cooldown);
 	}
 
 }

@@ -2,28 +2,34 @@ package engine.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import engine.Cooldown;
+import engine.Core;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CooldownTest {
 
-	@Test
-	void testCooldownInt() {
-		fail("Not yet implemented");
-	}
+	Cooldown cooldown;
 
-	@Test
-	void testCooldownIntInt() {
-		fail("Not yet implemented");
+	@BeforeEach
+	void setup() {
+		cooldown = Core.getCooldown(10);
 	}
 
 	@Test
 	void testCheckFinished() {
-		fail("Not yet implemented");
+		try {
+			Thread.sleep(10);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		assertTrue(cooldown.checkFinished());
 	}
 
 	@Test
 	void testReset() {
-		fail("Not yet implemented");
+		cooldown.reset();
+		assertTrue(!cooldown.checkFinished());
 	}
 
 }
