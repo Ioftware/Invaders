@@ -17,7 +17,7 @@ public class HighScoreScreen extends Screen {
 
 	/** List of past high scores. */
 	private List<Score> highScores;
-
+	private int difficulty;
 	/**
 	 * Constructor, establishes the properties of the screen.
 	 * 
@@ -32,6 +32,7 @@ public class HighScoreScreen extends Screen {
 		super(width, height, fps);
 
 		this.returnCode = 1;
+		this.difficulty = difficulty;
 
 		try {
 			this.highScores = Core.getFileManager().loadHighScores(difficulty);
@@ -61,6 +62,16 @@ public class HighScoreScreen extends Screen {
 		if (inputManager.isKeyDown(KeyEvent.VK_SPACE)
 				&& this.inputDelay.checkFinished())
 			this.isRunning = false;
+		
+		if (inputManager.isKeyDown(KeyEvent.VK_ESCAPE)
+				&& this.inputDelay.checkFinished()) {
+			try {
+				Core.getFileManager().resetHighScores(difficulty);
+				this.isRunning = false;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
