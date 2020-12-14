@@ -30,7 +30,7 @@ class EntityTest {
 
 	@Test
 	void testGetColor() {
-		assertTrue(entity.getColor() == Color.BLACK);
+		assertEquals(entity.getColor(), Color.BLACK);
 	}
 
 	@Test
