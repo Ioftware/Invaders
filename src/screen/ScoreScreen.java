@@ -45,6 +45,10 @@ public class ScoreScreen extends Screen {
 	private int nameCharSelected;
 	/** Time between changes in user selection. */
 	private Cooldown selectionCooldown;
+	
+	private boolean is_player1;
+	
+	private int difficulty;
 
 	/**
 	 * Constructor, establishes the properties of the screen.
@@ -59,21 +63,37 @@ public class ScoreScreen extends Screen {
 	 *            Current game state.
 	 */
 	public ScoreScreen(final int width, final int height, final int fps,
-			final GameState gameState) {
+			final GameState gameState, boolean is_player1, final int difficulty) {
 		super(width, height, fps);
 
-		this.score = gameState.getScore();
-		this.livesRemaining = gameState.getLivesRemaining();
-		this.bulletsShot = gameState.getBulletsShot();
-		this.shipsDestroyed = gameState.getShipsDestroyed();
-		this.isNewRecord = false;
-		this.name = "AAA".toCharArray();
-		this.nameCharSelected = 0;
-		this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
-		this.selectionCooldown.reset();
-
+		this.is_player1 = is_player1;
+		this.difficulty = difficulty;
+		
+		if (is_player1) {
+			this.score = gameState.getScoreP1();
+			this.livesRemaining = gameState.getLivesRemainingP1();
+			this.bulletsShot = gameState.getBulletsShotP1();
+			this.shipsDestroyed = gameState.getShipsDestroyedP1();
+			this.isNewRecord = false;
+			this.name = "AAA".toCharArray();
+			this.nameCharSelected = 0;
+			this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
+			this.selectionCooldown.reset();
+		}
+		else {
+			this.score = gameState.getScoreP2();
+			this.livesRemaining = gameState.getLivesRemainingP2();
+			this.bulletsShot = gameState.getBulletsShotP2();
+			this.shipsDestroyed = gameState.getShipsDestroyedP2();
+			this.isNewRecord = false;
+			this.name = "AAA".toCharArray();
+			this.nameCharSelected = 0;
+			this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
+			this.selectionCooldown.reset();
+		}
+		
 		try {
-			this.highScores = Core.getFileManager().loadHighScores();
+			this.highScores = Core.getFileManager().loadHighScores(difficulty);
 			if (highScores.size() < MAX_HIGH_SCORE_NUM
 					|| highScores.get(highScores.size() - 1).getScore()
 					< this.score)
@@ -142,6 +162,13 @@ public class ScoreScreen extends Screen {
 							: this.name[this.nameCharSelected] - 1);
 					this.selectionCooldown.reset();
 				}
+
+				for (int i = 'A'; i <= 'Z'; i++) {
+					if (inputManager.isKeyDown(i)) {
+						this.name[this.nameCharSelected] = (char)i;
+						this.selectionCooldown.reset();
+					}
+				}
 			}
 		}
 
@@ -157,7 +184,7 @@ public class ScoreScreen extends Screen {
 			highScores.remove(highScores.size() - 1);
 
 		try {
-			Core.getFileManager().saveHighScores(highScores);
+			Core.getFileManager().saveHighScores(highScores, difficulty);
 		} catch (IOException e) {
 			logger.warning("Couldn't load high scores!");
 		}
@@ -170,13 +197,13 @@ public class ScoreScreen extends Screen {
 		drawManager.initDrawing(this);
 
 		drawManager.drawGameOver(this, this.inputDelay.checkFinished(),
-				this.isNewRecord);
+				this.isNewRecord, is_player1);
 		drawManager.drawResults(this, this.score, this.livesRemaining,
 				this.shipsDestroyed, (float) this.shipsDestroyed
 						/ this.bulletsShot, this.isNewRecord);
 
 		if (this.isNewRecord)
-			drawManager.drawNameInput(this, this.name, this.nameCharSelected);
+			drawManager.drawNameInput(this, this.name, this.nameCharSelected, is_player1);
 
 		drawManager.completeDrawing(this);
 	}

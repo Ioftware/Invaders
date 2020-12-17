@@ -17,7 +17,7 @@ public class HighScoreScreen extends Screen {
 
 	/** List of past high scores. */
 	private List<Score> highScores;
-
+	private int difficulty;
 	/**
 	 * Constructor, establishes the properties of the screen.
 	 * 
@@ -28,13 +28,14 @@ public class HighScoreScreen extends Screen {
 	 * @param fps
 	 *            Frames per second, frame rate at which the game is run.
 	 */
-	public HighScoreScreen(final int width, final int height, final int fps) {
+	public HighScoreScreen(final int width, final int height, final int fps, final int difficulty) {
 		super(width, height, fps);
 
 		this.returnCode = 1;
+		this.difficulty = difficulty;
 
 		try {
-			this.highScores = Core.getFileManager().loadHighScores();
+			this.highScores = Core.getFileManager().loadHighScores(difficulty);
 		} catch (NumberFormatException | IOException e) {
 			logger.warning("Couldn't load high scores!");
 		}
@@ -61,6 +62,16 @@ public class HighScoreScreen extends Screen {
 		if (inputManager.isKeyDown(KeyEvent.VK_SPACE)
 				&& this.inputDelay.checkFinished())
 			this.isRunning = false;
+		
+		if (inputManager.isKeyDown(KeyEvent.VK_ESCAPE)
+				&& this.inputDelay.checkFinished()) {
+			try {
+				Core.getFileManager().resetHighScores(difficulty);
+				this.isRunning = false;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
