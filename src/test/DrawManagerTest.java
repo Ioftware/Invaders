@@ -93,8 +93,12 @@ class DrawManagerTest {
         private void draw() {
             drawManager.initDrawing(this);
 
-            drawManager.drawPreGame(this, 4);
-            drawManager.drawMenu(this, 2);
+            drawManager.drawGameOver(this, this.inputDelay.checkFinished(),
+                    true, false);
+            drawManager.drawResults(this, 100, 2,
+                    30, (float) 50
+                            / 100, true);
+            drawManager.drawNameInput(this, "AAA".toCharArray(), 0, false);
 
             drawManager.completeDrawing(this);
         }
